@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="g" cx="85%" cy="0%" r="70%"><stop offset="0" stop-color="#ff9d1c" stop-opacity=".35"/><stop offset="1" stop-color="#ff9d1c" stop-opacity="0"/></radialGradient>
+    <pattern id="stripe" width="48" height="48" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="24" height="48" fill="#ff9d1c"/></pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#101214"/>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <rect y="606" width="1200" height="24" fill="url(#stripe)"/>
+  <g transform="translate(1090 250) scale(.75)" opacity=".7" fill="none" stroke="#ff9d1c" stroke-width="4">
+    <circle r="230" stroke-opacity=".25"/>
+    <circle r="190" stroke="#2b2f34" stroke-width="34"/>
+    <circle r="150"/>
+    <circle r="54" stroke-width="8"/>
+    <path d="M0-54V-140M0 54V140M-54 0H-140M54 0H140M-38-38-100-100M38 38 100 100M38-38 100-100M-38 38-100 100" stroke="#3a3f46" stroke-width="14" stroke-linecap="round"/>
+    <circle r="18" fill="#ff9d1c" stroke="none"/>
+  </g>
+  <g font-family="Noto Sans, DejaVu Sans, Arial, sans-serif">
+    <rect x="80" y="80" width="64" height="64" rx="12" fill="#ff9d1c"/>
+    <circle cx="112" cy="112" r="19" fill="none" stroke="#16181b" stroke-width="10"/>
+    <text x="164" y="106" font-size="22" font-weight="700" letter-spacing="4" fill="#ff9d1c">AUTOSERVIS</text>
+    <text x="164" y="138" font-size="30" fill="#ffffff">Jan Sup</text>
+    <text x="80" y="270" font-size="66" font-weight="800" fill="#ffffff">Kvalita, rychlost,</text>
+    <text x="80" y="356" font-size="66" font-weight="800" fill="#ffffff">spokojenost zákazníků.</text>
+    <text x="80" y="430" font-size="30" fill="#d3d8de">Autoservis a pneuservis · Velká nad Veličkou</text>
+    <text x="80" y="472" font-size="30" font-weight="700" fill="#ffffff">Podnikáme od roku 1998</text>
+    <text x="80" y="548" font-size="40" font-weight="800" fill="#ff9d1c">603 955 423</text>
+    <text x="350" y="548" font-size="28" fill="#d3d8de">pneuservis 735 252 662</text>
+  </g>
+</svg>
