@@ -48,8 +48,9 @@
 
   /* Filtr katalogu */
   var filters = document.querySelector(".filters");
-  var cards = document.querySelectorAll(".card[data-cat]");
+  var cards = document.querySelectorAll(".card[data-cat], .price-row[data-cat]");
   var live = document.getElementById("katalog-stav");
+  var priceList = document.querySelector(".price-list");
   if (filters && cards.length) {
     filters.addEventListener("click", function (e) {
       var btn = e.target.closest(".filter-btn");
@@ -60,11 +61,16 @@
       });
       var cat = btn.getAttribute("data-filter");
       var shown = 0;
+      var rowsShown = 0;
       cards.forEach(function (card) {
         var ok = cat === "all" || card.getAttribute("data-cat") === cat;
         card.classList.toggle("is-hidden", !ok);
-        if (ok) shown += 1;
+        if (ok) {
+          shown += 1;
+          if (card.classList.contains("price-row")) rowsShown += 1;
+        }
       });
+      if (priceList) priceList.hidden = rowsShown === 0;
       if (live) {
         live.textContent = cat === "all"
           ? "Zobrazeno všech " + shown + " položek."
@@ -108,6 +114,18 @@
       }
     }
 
+    function todayISO() {
+      var d = new Date();
+      var m = String(d.getMonth() + 1);
+      var day = String(d.getDate());
+      if (m.length < 2) m = "0" + m;
+      if (day.length < 2) day = "0" + day;
+      return d.getFullYear() + "-" + m + "-" + day;
+    }
+    if (fields.datum.el) {
+      fields.datum.el.setAttribute("min", todayISO());
+    }
+
     function validate() {
       var ok = true;
       var jmeno = fields.jmeno.el.value.trim();
@@ -115,14 +133,22 @@
       var telefon = fields.telefon.el.value.trim();
       var datum = fields.datum.el.value.trim();
       var misto = fields.misto.el.value.trim();
+      var dnes = todayISO();
       setError("jmeno", jmeno ? "" : fields.jmeno.msg);
       if (!jmeno) ok = false;
       setError("email", emailRe.test(email) ? "" : fields.email.msg);
       if (!emailRe.test(email)) ok = false;
       setError("telefon", phoneRe.test(telefon) ? "" : fields.telefon.msg);
       if (!phoneRe.test(telefon)) ok = false;
-      setError("datum", datum ? "" : fields.datum.msg);
-      if (!datum) ok = false;
+      if (!datum) {
+        setError("datum", fields.datum.msg);
+        ok = false;
+      } else if (datum < dnes) {
+        setError("datum", "Datum akce musí být v budoucnu.");
+        ok = false;
+      } else {
+        setError("datum", "");
+      }
       setError("misto", misto ? "" : fields.misto.msg);
       if (!misto) ok = false;
       return ok;
