@@ -70,6 +70,9 @@
           if (card.classList.contains("price-row")) rowsShown += 1;
         }
       });
+      document.querySelectorAll(".price-group").forEach(function (g) {
+        g.hidden = g.querySelectorAll(".price-row:not(.is-hidden)").length === 0;
+      });
       if (priceList) priceList.hidden = rowsShown === 0;
       if (live) {
         live.textContent = cat === "all"

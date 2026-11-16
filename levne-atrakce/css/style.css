@@ -444,6 +444,37 @@ a:hover { color: var(--ink); }
   font-size: 1.5rem;
   line-height: 1.1;
 }
+.card.is-thumb .card-media {
+  aspect-ratio: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 200px;
+  background: #efe8dc;
+}
+.card.is-thumb .card-media img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+}
+.card.is-thumb:hover .card-media img { transform: none; }
+@media (min-width: 700px) {
+  .card.is-thumb {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    align-items: stretch;
+  }
+  .card.is-thumb .card-media {
+    max-height: none;
+    min-height: 140px;
+    height: 100%;
+  }
+  .card.is-thumb .card-media img {
+    max-height: 180px;
+  }
+}
 .card-body { padding: 1.05rem 1.15rem 1.25rem; display: flex; flex-direction: column; gap: 0.45rem; flex: 1; }
 .card h3 {
   margin: 0;
@@ -484,6 +515,21 @@ a:hover { color: var(--ink); }
   font-family: var(--display);
   font-size: 1.4rem;
 }
+.price-group { margin-top: 1.4rem; }
+.price-group[hidden] { display: none; }
+.price-group-title {
+  margin: 0 0 0.55rem;
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+.pack-group { margin-top: 2.2rem; }
+.pack-group-title {
+  margin: 0 0 0.9rem;
+  font-family: var(--display);
+  font-size: 1.4rem;
+}
+.pack-group .note { margin-top: 0.9rem; }
 .price-rows {
   list-style: none;
   margin: 0;
@@ -667,6 +713,19 @@ th { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; colo
 .lightbox-prev { left: 0.8rem; right: auto; }
 .lightbox-next { right: 0.8rem; }
 .lightbox p { color: #fff; text-align: center; margin: 0.7rem 0 0; }
+@media (max-width: 599px) {
+  .lightbox-inner {
+    padding: 3.5rem 0.5rem 5rem;
+  }
+  .lightbox img { max-height: 70vh; }
+  .lightbox-nav {
+    top: auto;
+    bottom: 0.8rem;
+    transform: none;
+  }
+  .lightbox-prev { left: calc(50% - 5.6rem); }
+  .lightbox-next { right: calc(50% - 5.6rem); left: auto; }
+}
 
 /* Contact */
 .contact-grid {
