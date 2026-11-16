@@ -1,0 +1,3 @@
+# Náhled návrhu – indexace je záměrně zakázána.
+User-agent: *
+Disallow: /

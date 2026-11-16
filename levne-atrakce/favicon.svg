@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Atrakce Pohoda">
+  <rect width="64" height="64" rx="14" fill="#1b1028"/>
+  <circle cx="32" cy="22" r="9" fill="#f0b429"/>
+  <path fill="#ff5a7a" d="M12 46c0-8 9-14 20-14s20 6 20 14v4H12v-4z"/>
+  <path fill="#ffd166" d="M20 46c2-6 7-9 12-9s10 3 12 9H20z"/>
+  <path fill="#1aa7b0" d="M18 50h28c0 4-6 7-14 7s-14-3-14-7z"/>
+</svg>
