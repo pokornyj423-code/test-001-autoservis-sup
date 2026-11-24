@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Cukrárna a kavárna U Marcely v Lomnici nad Popelkou — zákusky a dorty vlastní výroby, lomnické suchary, poháry a posezení na náměstí.">
+  <title>Cukrárna a kavárna U Marcely — Lomnice nad Popelkou</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233a2a22'/%3E%3Ccircle cx='16' cy='14' r='7' fill='%23e7c9a4'/%3E%3Cpath d='M10 22h12v2H10z' fill='%239c4a4a'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fbf6f0;
+      --paper: #fffaf4;
+      --ink: #2c211c;
+      --muted: #6e5b52;
+      --rose: #8f3d3d;
+      --gold: #b8894a;
+      --line: rgba(44,33,28,.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Source Sans 3", system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+    a { color: var(--rose); }
+    .wrap { width: min(1080px, calc(100% - 32px)); margin-inline: auto; }
+    .note { background: #3a2a22; color: #f3e6d4; text-align: center; font-size: .82rem; padding: .55rem 1rem; }
+    header { position: sticky; top: 0; z-index: 20; background: rgba(251,246,240,.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .head { display: flex; align-items: center; justify-content: space-between; min-height: 74px; gap: 1rem; }
+    .logo { text-decoration: none; color: var(--ink); font-family: "Cormorant Garamond", Georgia, serif; font-weight: 700; font-size: 1.45rem; line-height: 1; }
+    .logo span { display: block; font-family: "Source Sans 3", sans-serif; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-top: .2rem; }
+    #nav-toggle { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .burger { display: none; width: 44px; height: 44px; place-items: center; cursor: pointer; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+    .burger i, .burger i::before, .burger i::after { display: block; width: 18px; height: 2px; background: var(--ink); position: relative; }
+    .burger i::before, .burger i::after { content: ""; position: absolute; left: 0; }
+    .burger i::before { top: -6px; } .burger i::after { top: 6px; }
+    nav ul { display: flex; gap: 1.4rem; list-style: none; align-items: center; }
+    nav a { color: var(--ink); text-decoration: none; font-weight: 600; }
+    nav a:hover, nav a:focus-visible { color: var(--rose); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: .8rem 1.25rem; border-radius: 999px; background: var(--rose); color: #fffaf4; text-decoration: none; font-weight: 700; }
+    .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+    .hero { padding: 4.5rem 0 3.4rem; background:
+      linear-gradient(180deg, #f3e6d4, var(--bg));
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 2.6rem; align-items: center; }
+    .ornament { color: var(--gold); letter-spacing: .22em; text-transform: uppercase; font-size: .72rem; font-weight: 700; margin-bottom: .8rem; }
+    h1 { font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(2.4rem, 5.5vw, 4rem); line-height: 1.05; font-weight: 600; }
+    .lead { margin: 1.1rem 0 1.7rem; color: var(--muted); font-size: 1.08rem; max-width: 36rem; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: .7rem; }
+    .panel { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 1.5rem 1.5rem 1.3rem; box-shadow: 0 16px 40px rgba(80,50,30,.06); }
+    .panel h2 { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.6rem; font-weight: 600; margin-bottom: .8rem; }
+    .panel p { margin: 0 0 .55rem; }
+    section { padding: 3.8rem 0; }
+    .sec-title { font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(1.9rem, 3vw, 2.6rem); font-weight: 600; margin-bottom: .45rem; }
+    .sec-intro { color: var(--muted); max-width: 40rem; margin-bottom: 1.8rem; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .card { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 1.2rem 1.15rem; }
+    .card h3 { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.35rem; font-weight: 600; margin-bottom: .25rem; }
+    .card p { color: var(--muted); }
+    .band { background: #3a2a22; color: #f6eee4; }
+    .band .sec-intro { color: #d9c8b6; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 2.2rem; align-items: start; }
+    .hours { width: 100%; border-collapse: collapse; }
+    .hours th, .hours td { text-align: left; padding: .6rem 0; border-bottom: 1px solid var(--line); }
+    .hours th { font-weight: 600; color: var(--muted); }
+    .chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.2rem; }
+    .chip { border: 1px solid var(--line); border-radius: 999px; padding: .35rem .8rem; font-size: .88rem; color: var(--muted); }
+    footer { padding: 2rem 0 2.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+    @media (max-width: 840px) {
+      .hero-grid, .cards, .split { grid-template-columns: 1fr; }
+      .burger { display: grid; }
+      nav { display: none; position: absolute; inset: 74px 0 auto; background: #fbf6f0; border-bottom: 1px solid var(--line); padding: 1rem 16px 1.2rem; }
+      nav ul { flex-direction: column; align-items: stretch; gap: .3rem; }
+      nav a { display: block; padding: .7rem .3rem; }
+      #nav-toggle:checked ~ nav { display: block; }
+      .hero { padding: 2.5rem 0 2rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <p class="note">Toto je návrh úvodní stránky. Údaje jsou z veřejných katalogů a rád je upravím podle vašich podkladů.</p>
+  <header>
+    <div class="wrap head">
+      <a class="logo" href="#uvod">U Marcely<span>Cukrárna a kavárna · Lomnice nad Popelkou</span></a>
+      <input type="checkbox" id="nav-toggle">
+      <label class="burger" for="nav-toggle" aria-label="Otevřít menu"><i></i></label>
+      <nav aria-label="Hlavní menu">
+        <ul>
+          <li><a href="#nabidka">Nabídka</a></li>
+          <li><a href="#provoz">Otevírací doba</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+          <li><a class="btn" href="tel:+420777700808">Zavolat</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="uvod">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="ornament">Husovo náměstí 46</p>
+          <h1>Cukrárna, kam se v Lomnici chodí na zákusek i na kávu.</h1>
+          <p class="lead">U Marcely nabízíme posezení s nápoji, koktejly, poháry a zákusky vlastní výroby. V létě můžete sedět na zahrádce přímo na náměstí.</p>
+          <div class="hero-cta">
+            <a class="btn" href="tel:+420777700808">+420 777 700 808</a>
+            <a class="btn btn-ghost" href="mailto:turekvos@email.cz">turekvos@email.cz</a>
+          </div>
+        </div>
+        <aside class="panel">
+          <h2>Dnes u nás</h2>
+          <p><strong>Po–Pá</strong> 8:30–17:30</p>
+          <p><strong>So a Ne</strong> 8:30–12:00 a 12:30–17:30</p>
+          <p style="color:var(--muted);font-size:.92rem;margin-top:.8rem;">Když si chcete být jistí před cestou, klidně zavolejte.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="nabidka">
+      <div class="wrap">
+        <h2 class="sec-title">Vlastní výroba z cukrárny</h2>
+        <p class="sec-intro">Dorty, zákusky a lomnické speciality vlastní výroby. Aktuální nabídku i dort na objednávku rádi upřesníme osobně nebo po telefonu.</p>
+        <div class="cards">
+          <article class="card"><h3>Zákusky a dorty</h3><p>Cukrářské výrobky vlastní výroby, včetně dortů na objednávku.</p></article>
+          <article class="card"><h3>Lomnické speciality</h3><p>Lomnické suchary, kulatky a bednáře, jak se k Lomnici hodí.</p></article>
+          <article class="card"><h3>Koláčky</h3><p>Ovocné koláčky i svatební koláčky pro slavnostní tabuli.</p></article>
+          <article class="card"><h3>Zmrzlina</h3><p>Točená i kopečková zmrzlina, když přijde teplejší den.</p></article>
+          <article class="card"><h3>Káva, poháry a koktejly</h3><p>Nápoje, poháry a koktejly k posezení v cukrárně.</p></article>
+          <article class="card"><h3>Letní zahrádka</h3><p>V letních měsících je posezení i venku na zahrádce.</p></article>
+        </div>
+        <div class="chips">
+          <span class="chip">Platba kartou</span>
+          <span class="chip">Wi-Fi</span>
+          <span class="chip">Vhodné pro rodiny</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="provoz">
+      <div class="wrap split">
+        <div>
+          <h2 class="sec-title">Na náměstí už od devadesátých let</h2>
+          <p class="sec-intro">Cukrárnu a kavárnu provozuje společnost TUREK, v.o.s. Firma je v Lomnici nad Popelkou od roku 1993. Najdete nás na Husově náměstí 46.</p>
+        </div>
+        <div class="panel" style="color:var(--ink)">
+          <h2>Otevírací doba</h2>
+          <table class="hours">
+            <tbody>
+              <tr><th>Pondělí–pátek</th><td>8:30–17:30</td></tr>
+              <tr><th>Sobota a neděle</th><td>8:30–12:00, 12:30–17:30</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <div class="wrap split">
+        <div>
+          <h2 class="sec-title">Přijďte na náměstí, nebo nám napište</h2>
+          <p class="lead">Na dort, svatební koláčky nebo jen na kávu se můžete ozvat telefonem i e-mailem.</p>
+          <div class="hero-cta">
+            <a class="btn" href="tel:+420777700808">+420 777 700 808</a>
+            <a class="btn btn-ghost" href="tel:+420481671295">+420 481 671 295</a>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>Kontakt</h2>
+          <p><strong>Cukrárna a kavárna U Marcely</strong><br>TUREK, v.o.s.</p>
+          <p><a href="https://mapy.cz/zakladni?q=Husovo%20n%C3%A1m%C4%9Bst%C3%AD%2046%2C%20512%2051%20Lomnice%20nad%20Popelkou" rel="noopener noreferrer" target="_blank">Husovo náměstí 46, 512 51 Lomnice nad Popelkou</a></p>
+          <p><a href="mailto:turekvos@email.cz">turekvos@email.cz</a></p>
+          <p>IČO 48169668 · DIČ CZ48169668</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <p><strong>TUREK, v.o.s.</strong> — Cukrárna a kavárna U Marcely<br>Husovo náměstí 46, 512 51 Lomnice nad Popelkou · IČO 48169668</p>
+      <p>Návrh úvodní stránky. Stránka nepoužívá cookies ani sledování.</p>
+    </div>
+  </footer>
+</body>
+</html>
