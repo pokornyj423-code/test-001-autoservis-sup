@@ -1,275 +1,75 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="EKONOM Příbram, spol. s r.o. — autoservis, pneuservis a příprava na STK v Příbrami. Součást sítě EUROREPAR Car Service.">
-  <title>EKONOM Příbram — autoservis a pneuservis</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23101418'/%3E%3Cpath d='M8 20h16l-2-7H10l-2 7zm6-11h4v3h-4z' fill='%23e8a317'/%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0e1318;
-      --bg-2: #161d24;
-      --card: #1c242d;
-      --line: rgba(255,255,255,.08);
-      --text: #f4f1ea;
-      --muted: #b4b0a6;
-      --accent: #e8a317;
-      --accent-ink: #1a1304;
-      --ok: #8fcdb0;
-      --radius: 18px;
-      --shadow: 0 20px 50px rgba(0,0,0,.35);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: "IBM Plex Sans", system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.55;
-      min-height: 100vh;
-    }
-    img, svg { display: block; max-width: 100%; }
-    a { color: var(--accent); }
-    .wrap { width: min(1120px, calc(100% - 32px)); margin-inline: auto; }
-    .note {
-      background: #221c10;
-      color: #e8d7a8;
-      font-size: .82rem;
-      text-align: center;
-      padding: .55rem 1rem;
-      border-bottom: 1px solid rgba(232,163,23,.25);
-    }
-    header {
-      position: sticky; top: 0; z-index: 20;
-      background: rgba(14,19,24,.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line);
-    }
-    .head {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 1rem; min-height: 68px;
-    }
-    .logo {
-      color: var(--text); text-decoration: none; font-family: Syne, sans-serif;
-      font-weight: 800; letter-spacing: -.03em; font-size: 1.15rem; line-height: 1.1;
-    }
-    .logo span { display: block; font-family: "IBM Plex Sans", sans-serif; font-weight: 500; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-    #nav-toggle { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-    .burger {
-      display: none; width: 44px; height: 44px; place-items: center; cursor: pointer;
-      border: 1px solid var(--line); border-radius: 10px;
-    }
-    .burger i, .burger i::before, .burger i::after {
-      display: block; width: 18px; height: 2px; background: var(--text); position: relative; border-radius: 1px;
-    }
-    .burger i::before, .burger i::after { content: ""; position: absolute; left: 0; }
-    .burger i::before { top: -6px; } .burger i::after { top: 6px; }
-    nav ul { display: flex; gap: 1.4rem; list-style: none; align-items: center; }
-    nav a { color: var(--text); text-decoration: none; font-weight: 500; font-size: .95rem; }
-    nav a:hover, nav a:focus-visible { color: var(--accent); }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      background: var(--accent); color: var(--accent-ink); font-weight: 700;
-      text-decoration: none; border-radius: 999px; padding: .85rem 1.25rem;
-      min-height: 44px;
-    }
-    .btn:hover { filter: brightness(1.05); }
-    .btn-ghost {
-      background: transparent; color: var(--text);
-      border: 1px solid var(--line);
-    }
-    .hero {
-      position: relative; overflow: hidden;
-      padding: 4.5rem 0 3.5rem;
-      background:
-        radial-gradient(1200px 500px at 80% -10%, rgba(232,163,23,.16), transparent 55%),
-        linear-gradient(180deg, #141b22, var(--bg));
-    }
-    .hero::before {
-      content: ""; position: absolute; inset: 0;
-      background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: 48px 48px; mask-image: linear-gradient(180deg, rgba(0,0,0,.5), transparent 80%);
-      pointer-events: none;
-    }
-    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 3rem; align-items: center; position: relative; }
-    .kicker { color: var(--accent); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: .76rem; margin-bottom: .8rem; }
-    h1 { font-family: Syne, sans-serif; font-weight: 800; font-size: clamp(2.1rem, 5vw, 3.6rem); letter-spacing: -.04em; line-height: 1.05; }
-    .lead { margin: 1.1rem 0 1.8rem; color: var(--muted); font-size: 1.08rem; max-width: 38rem; }
-    .hero-cta { display: flex; flex-wrap: wrap; gap: .8rem; }
-    .panel {
-      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-      padding: 1.4rem 1.5rem; box-shadow: var(--shadow);
-    }
-    .panel h2 { font-size: 1rem; margin-bottom: .8rem; }
-    .panel dl { display: grid; gap: .7rem; }
-    .panel dt { color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; }
-    .panel dd { font-weight: 600; }
-    .panel a { color: var(--text); text-decoration: none; }
-    .panel a:hover { color: var(--accent); }
-    section { padding: 4rem 0; }
-    .sec-title { font-family: Syne, sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -.03em; margin-bottom: .5rem; }
-    .sec-intro { color: var(--muted); max-width: 40rem; margin-bottom: 2rem; }
-    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .card {
-      background: var(--bg-2); border: 1px solid var(--line); border-radius: 16px; padding: 1.25rem 1.2rem;
-    }
-    .card h3 { font-size: 1.05rem; margin-bottom: .35rem; }
-    .card p { color: var(--muted); font-size: .95rem; }
-    .icon {
-      width: 42px; height: 42px; border-radius: 10px; margin-bottom: .8rem;
-      display: grid; place-items: center; background: rgba(232,163,23,.12); color: var(--accent);
-    }
-    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
-    .facts { list-style: none; display: grid; gap: .7rem; margin-top: 1.2rem; }
-    .facts li { display: flex; gap: .7rem; align-items: flex-start; }
-    .facts li::before { content: ""; width: 8px; height: 8px; margin-top: .5rem; border-radius: 50%; background: var(--accent); flex: none; }
-    .hours { width: 100%; border-collapse: collapse; }
-    .hours th, .hours td { text-align: left; padding: .65rem 0; border-bottom: 1px solid var(--line); }
-    .hours th { font-weight: 500; color: var(--muted); }
-    footer { border-top: 1px solid var(--line); padding: 2rem 0 2.4rem; color: var(--muted); font-size: .88rem; }
-    footer strong { color: var(--text); font-weight: 600; }
-    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
-    @media (max-width: 840px) {
-      .hero-grid, .cards, .split { grid-template-columns: 1fr; }
-      .burger { display: grid; }
-      nav {
-        display: none; position: absolute; left: 0; right: 0; top: 68px;
-        background: #12181e; border-bottom: 1px solid var(--line); padding: 1rem 16px 1.2rem;
-      }
-      nav ul { flex-direction: column; align-items: stretch; gap: .4rem; }
-      nav a { display: block; padding: .7rem .4rem; }
-      #nav-toggle:checked ~ nav { display: block; }
-      .hero { padding: 2.6rem 0 2.2rem; }
-    }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0e1318">
+<title>EKONOM Příbram — autoservis, pneuservis a STK v Příbrami</title>
+<meta name="description" content="EKONOM Příbram, spol. s r.o. — autoservis, pneuservis, příprava na STK a pojistné události v Obecnické 361 v Příbrami. Člen sítě EUROREPAR Car Service.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23101418'/%3E%3Cpath d='M8 20h16l-2-7H10l-2 7zm6-11h4v3h-4z' fill='%23e8a317'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <p class="note">Toto je návrh úvodní stránky. Údaje jsou z veřejných zdrojů (ekonompb.cz, Firmy.cz) a rád je upravím podle vašich podkladů.</p>
-  <header>
-    <div class="wrap head">
-      <a class="logo" href="#uvod">EKONOM Příbram<span>Autoservis · Pneuservis · STK</span></a>
-      <input type="checkbox" id="nav-toggle">
-      <label class="burger" for="nav-toggle" aria-label="Otevřít menu"><i></i></label>
-      <nav aria-label="Hlavní menu">
-        <ul>
-          <li><a href="#sluzby">Služby</a></li>
-          <li><a href="#o-nas">O nás</a></li>
-          <li><a href="#kontakt">Kontakt</a></li>
-          <li><a class="btn" href="tel:+420602385818">Zavolat</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<p class="note">Návrh nového webu pro EKONOM Příbram. Údaje jsou z veřejných zdrojů (ekonompb.cz, Firmy.cz, EUROREPAR, ARES) a rád je upravím podle Vašich podkladů.</p>
+<header>
+<div class="wrap head">
+<a class="logo" href="index.html">EKONOM Příbram<span>Autoservis · Pneuservis · STK</span></a>
+<input type="checkbox" id="nt" aria-label="Menu">
+<label class="burger" for="nt" aria-label="Otevřít menu"><i></i></label>
+<nav aria-label="Hlavní menu"><ul><li><a href="index.html" aria-current="page">Úvod</a></li><li><a href="sluzby.html">Služby</a></li><li><a href="o-nas.html">O nás</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a class="btn" href="tel:+420602385818">Zavolat</a></li></ul></nav>
+</div>
+</header>
+<main>
 
-  <main>
-    <section class="hero" id="uvod">
-      <div class="wrap hero-grid">
-        <div>
-          <p class="kicker">Příbram · Obecnická 361</p>
-          <h1>Servis, ve kterém se řidič rychle zorientuje.</h1>
-          <p class="lead">EKONOM Příbram opravuje a udržuje osobní vozy, připravuje je na STK a řeší pneuservis i pojistné události. Jsme součástí sítě EUROREPAR Car Service.</p>
-          <div class="hero-cta">
-            <a class="btn" href="tel:+420602385818">+420 602 385 818</a>
-            <a class="btn btn-ghost" href="mailto:ercs@ekonompb.cz">ercs@ekonompb.cz</a>
-          </div>
-        </div>
-        <aside class="panel" aria-label="Rychlý kontakt">
-          <h2>Kde nás najdete</h2>
-          <dl>
-            <div>
-              <dt>Adresa</dt>
-              <dd><a href="https://mapy.cz/zakladni?q=Obecnick%C3%A1%20361%2C%20261%2001%20P%C5%99%C3%ADbram" rel="noopener noreferrer" target="_blank">Obecnická 361, 261 01 Příbram IV</a></dd>
-            </div>
-            <div>
-              <dt>Otevírací doba</dt>
-              <dd>Po–Pá 7:30–17:00<br>So a Ne zavřeno</dd>
-            </div>
-            <div>
-              <dt>Telefony</dt>
-              <dd><a href="tel:+420602385818">+420 602 385 818</a><br><a href="tel:+420602227094">+420 602 227 094</a></dd>
-            </div>
-          </dl>
-        </aside>
-      </div>
-    </section>
-
-    <section id="sluzby">
-      <div class="wrap">
-        <h2 class="sec-title">Co u nás vyřídíte</h2>
-        <p class="sec-intro">Opravy, údržba, pneuservis i příprava na STK. To hlavní, s čím se na nás můžete obrátit.</p>
-        <div class="cards">
-          <article class="card"><div class="icon" aria-hidden="true"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M11 7v4l3 2"/></svg></div><h3>Záruční a pozáruční opravy</h3><p>Opravy silničních vozidel a běžný servis po záruce i v záruce.</p></article>
-          <article class="card"><div class="icon" aria-hidden="true"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="16" height="14" rx="2"/><path d="M3 9h16"/></svg></div><h3>Příprava na STK a emise</h3><p>Připravíme vůz na STK a zajistíme měření emisí.</p></article>
-          <article class="card"><div class="icon" aria-hidden="true"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h14M8 7l-4 5 4 5M14 7l4 5-4 5"/></svg></div><h3>Pravidelná údržba</h3><p>Periodické prohlídky, výměny olejů a seřízení světlometů.</p></article>
-          <article class="card"><div class="icon" aria-hidden="true"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="3"/><path d="M11 3v3M11 16v3M3 11h3M16 11h3"/></svg></div><h3>Diagnostika závad</h3><p>Profesionální diagnostika včetně diagnostiky motorů.</p></article>
-          <article class="card"><div class="icon" aria-hidden="true"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><circle cx="11" cy="11" r="3"/></svg></div><h3>Pneuservis</h3><p>Přezutí, geometrie kol a uskladnění pneu.</p></article>
-          <article class="card"><div class="icon" aria-hidden="true"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="16" height="10" rx="1"/><path d="M6 8V6a5 5 0 0 1 10 0v2"/></svg></div><h3>Klimatizace</h3><p>Servis, čištění ozonem a plnění klimatizací.</p></article>
-          <article class="card"><div class="icon" aria-hidden="true"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16h14l2-6H8L4 16z"/><circle cx="8" cy="18" r="2"/><circle cx="16" cy="18" r="2"/></svg></div><h3>Skla a díly</h3><p>Výměny čelních skel a prodej náhradních dílů.</p></article>
-          <article class="card"><div class="icon" aria-hidden="true"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 18V6l8 4-8 4"/><path d="M13 8h5v10H7"/></svg></div><h3>Pojistné události</h3><p>Likvidace a vyřízení pojistné události za vás.</p></article>
-          <article class="card"><div class="icon" aria-hidden="true"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15h14M6 15V8l5-3 5 3v7"/></svg></div><h3>Další montáže a prodej</h3><p>Tažná zařízení, autoalarmy, navigace, zabezpečení a prodej ojetých vozidel.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="o-nas" style="background:var(--bg-2)">
-      <div class="wrap split">
-        <div>
-          <h2 class="sec-title">Autoservis s dlouhou stopou v Příbrami</h2>
-          <p class="sec-intro">Společnost EKONOM Příbram, spol. s r.o. působí od roku 1993. Patříme do sítě EUROREPAR Car Service, která se zaměřuje na údržbu a opravy vozů evropských značek.</p>
-          <ul class="facts">
-            <li>Sídlo a provozovna: Obecnická 361, 261 01 Příbram IV</li>
-            <li>IČO 49551540, DIČ CZ49551540</li>
-            <li>Veřejné hodnocení na Firmy.cz: 4,4 z 5 (7 hodnocení)</li>
-          </ul>
-        </div>
-        <div class="panel">
-          <h2>Provozní doba</h2>
-          <table class="hours">
-            <tbody>
-              <tr><th>Pondělí–pátek</th><td>7:30–17:00</td></tr>
-              <tr><th>Sobota</th><td>zavřeno</td></tr>
-              <tr><th>Neděle</th><td>zavřeno</td></tr>
-            </tbody>
-          </table>
-          <p style="margin-top:1rem;color:var(--muted);font-size:.92rem;">Když potřebujete vůz nechat přes víkend, ozvěte se nám v týdnu předem.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="kontakt">
-      <div class="wrap split">
-        <div>
-          <h2 class="sec-title">Ozvěte se, nebo nás zastihněte v dílně</h2>
-          <p class="lead">Nejjednodušší je zavolat. E-mail i adresa jsou stejné, jaké už používáte.</p>
-          <div class="hero-cta">
-            <a class="btn" href="tel:+420602385818">Zavolat +420 602 385 818</a>
-            <a class="btn btn-ghost" href="mailto:ercs@ekonompb.cz">Napsat e-mail</a>
-          </div>
-        </div>
-        <div class="panel">
-          <h2>Kontakt</h2>
-          <dl>
-            <div><dt>Firma</dt><dd>EKONOM Příbram, spol. s r.o.</dd></div>
-            <div><dt>Adresa</dt><dd><a href="https://mapy.cz/zakladni?q=Obecnick%C3%A1%20361%2C%20261%2001%20P%C5%99%C3%ADbram" rel="noopener noreferrer" target="_blank">Obecnická 361, 261 01 Příbram IV</a></dd></div>
-            <div><dt>E-mail</dt><dd><a href="mailto:ercs@ekonompb.cz">ercs@ekonompb.cz</a></dd></div>
-            <div><dt>Telefon</dt><dd><a href="tel:+420602385818">+420 602 385 818</a>, <a href="tel:+420602227094">+420 602 227 094</a></dd></div>
-          </dl>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap foot">
-      <p><strong>EKONOM Příbram, spol. s r.o.</strong><br>Obecnická 361, 261 01 Příbram IV · IČO 49551540</p>
-      <p>Návrh úvodní stránky. Stránka nepoužívá cookies ani sledování.</p>
-    </div>
-  </footer>
+<section class="hero"><div class="wrap hero-grid">
+<div>
+<p class="kicker">Příbram · Obecnická 361 · od roku 1993</p>
+<h1>Autoservis v Příbrami, kde se domluvíte.</h1>
+<p class="lead">Opravujeme a udržujeme osobní vozy, připravíme je na STK, přezujeme pneumatiky a vyřídíme pojistnou událost. Jsme součástí sítě EUROREPAR Car Service.</p>
+<div class="cta"><a class="btn" href="tel:+420602385818">Zavolat +420 602 385 818</a><a class="btn btn-ghost" href="sluzby.html">Co pro Vás uděláme</a></div>
+</div>
+<figure class="photo"><picture><source type="image/webp" srcset="img/provozovna-720.webp 720w, img/provozovna-1200.webp 1200w" sizes="(max-width:860px) 100vw, 480px"><img src="img/provozovna-720.jpg" width="720" height="480" alt="Areál autoservisu EKONOM Příbram v Obecnické ulici" fetchpriority="high"></picture><figcaption>Areál v Obecnické 361 (foto z profilu na Firmy.cz)</figcaption></figure>
+</div>
+<div class="wrap quick">
+<div><b>Otevřeno</b>Po–Pá 7:30–17:00</div>
+<div><b>Adresa</b><a href="https://mapy.cz/zakladni?q=Obecnick%C3%A1%20361%2C%20261%2001%20P%C5%99%C3%ADbram" target="_blank" rel="noopener">Obecnická 361, Příbram IV</a></div>
+<div><b>Telefon</b><a href="tel:+420602385818">+420 602 385 818</a><br><a href="tel:+420602227094">+420 602 227 094</a></div>
+</div></section>
+<section class="alt"><div class="wrap">
+<h2>Nejčastěji u nás řešíte</h2>
+<p class="intro">Kompletní přehled najdete na stránce <a href="sluzby.html">Služby</a>.</p>
+<div class="cards"><article class="card"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 4a4 4 0 0 0-5 5l-6 6 3 3 6-6a4 4 0 0 0 5-5l-2 2-2-1-1-2z"/></svg></div><h3>Záruční a pozáruční opravy</h3><p>Opravy a servis osobních vozů v záruce i po ní.</p></article><article class="card"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="16" height="14" rx="2"/><path d="M7 11l3 3 5-6"/></svg></div><h3>Příprava a vyřízení STK</h3><p>Připravíme vůz na technickou kontrolu, zajistíme měření emisí a STK vyřídíme.</p></article><article class="card"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 3v4M11 15v4M3 11h4M15 11h4"/><circle cx="11" cy="11" r="4"/></svg></div><h3>Pravidelná údržba</h3><p>Periodické prohlídky, výměny olejů a seřízení světlometů.</p></article><article class="card"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="16" height="11" rx="2"/><path d="M6 12l2-3 2 4 2-5 2 4h2"/></svg></div><h3>Diagnostika závad</h3><p>Profesionální diagnostika včetně diagnostiky motorů.</p></article><article class="card"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><circle cx="11" cy="11" r="3"/></svg></div><h3>Pneuservis a geometrie</h3><p>Přezutí, geometrie kol a uskladnění pneumatik.</p></article><article class="card"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 2v18M3 6l16 10M19 6L3 16"/></svg></div><h3>Klimatizace</h3><p>Servis, čištění ozonem a plnění klimatizací.</p></article></div>
+<div class="cta"><a class="btn btn-ghost" href="sluzby.html">Všechny služby</a></div>
+</div></section>
+<section><div class="wrap">
+<h2>Jak to u nás probíhá</h2>
+<ol class="steps">
+<li><h3>Zavoláte nebo napíšete</h3><p>Domluvíme termín a řeknete nám, co vůz potřebuje.</p></li>
+<li><h3>Přivezete auto</h3><p>Do Obecnické 361, v pracovní dny od 7:30 do 17:00. Parkoviště je u servisu.</p></li>
+<li><h3>Vyzvednete a zaplatíte</h3><p>Zaplatit můžete i kartou.</p></li>
+</ol>
+</div></section>
+<section class="alt"><div class="wrap split">
+<div><h2>Co o nás píší zákazníci</h2><p class="intro">Hodnocení na Firmy.cz: 4,4 z 5 ze 7 hodnocení.</p></div>
+<blockquote>„Férové jednání. Po servisu jsem si sám nevšiml chyby na faktuře, zavolali a upozornili mě na to a následně tento omyl byl napraven a peníze vráceny.“<cite>Davca, hodnocení na Firmy.cz (29. 11. 2023) · celkem 4,4 z 5 ze 7 hodnocení</cite></blockquote>
+</div></section>
+<section><div class="wrap split">
+<div><h2>Přijeďte, nebo zavolejte</h2><p class="lead">Nejrychlejší je telefon. Adresa, e-mail i otevírací doba jsou na stránce <a href="kontakt.html">Kontakt</a> i s mapou.</p>
+<div class="cta"><a class="btn" href="tel:+420602385818">Zavolat</a><a class="btn btn-ghost" href="kontakt.html">Kontakt a mapa</a></div></div>
+<div class="panel"><h3>Otevírací doba</h3><table><tbody><tr><th>Pondělí–pátek</th><td>7:30–17:00</td></tr><tr><th>Sobota</th><td>zavřeno</td></tr><tr><th>Neděle</th><td>zavřeno</td></tr></tbody></table></div>
+</div></section>
+</main>
+<footer>
+<div class="wrap foot">
+<p><strong>EKONOM Příbram, spol. s r.o.</strong><br>Obecnická 361, 261 01 Příbram IV<br>IČO 49551540 · DIČ CZ49551540</p>
+<p>Po–Pá 7:30–17:00<br><a href="tel:+420602385818">+420 602 385 818</a> · <a href="mailto:ercs@ekonompb.cz">ercs@ekonompb.cz</a></p>
+<p>Návrh webu · stránka nepoužívá cookies ani sledování</p>
+</div>
+</footer>
+<div class="callbar"><a class="btn" href="tel:+420602385818">Zavolat</a><a class="btn btn-ghost" href="https://mapy.cz/zakladni?q=Obecnick%C3%A1%20361%2C%20261%2001%20P%C5%99%C3%ADbram" target="_blank" rel="noopener">Navigovat</a></div>
 </body>
 </html>
